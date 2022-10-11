@@ -20,8 +20,8 @@ package org.killbill.billing.plugin.stripe;
 import java.io.IOException;
 import java.sql.SQLException;
 
-import org.killbill.billing.platform.test.PlatformDBTestingHelper;
 import org.killbill.billing.plugin.TestUtils;
+import org.killbill.billing.plugin.stripe.testcontainer.EmbeddedDbFactory;
 import org.killbill.commons.embeddeddb.EmbeddedDB;
 
 import org.killbill.billing.plugin.stripe.dao.StripeDao;
@@ -40,7 +40,7 @@ public class EmbeddedDbHelper {
     public void startDb() throws Exception {
         System.setProperty("org.jooq.no-logo", "true");
 
-        embeddedDB = PlatformDBTestingHelper.get().getInstance();
+        embeddedDB = EmbeddedDbFactory.getInstance().getEmbeddedDB();
         embeddedDB.initialize();
         embeddedDB.start();
 
